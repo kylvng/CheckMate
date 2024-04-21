@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 // Proxy endpoint
 app.post('/foodvisor-analysis', async (req, res) => {
   try {
-    const apiKey = import.meta.env.VITE_APP_API_KEY;
+    const apiKey = req.headers.authorization;
     const imageUrl = req.body.image;
     const foodvisorResponse = await axios.post('https://vision.foodvisor.io/api/1.0/en/analysis/', { image: imageUrl }, {
       headers: {
